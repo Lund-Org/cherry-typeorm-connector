@@ -5,8 +5,8 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - "4000:3306"
+      - "3306:3306"
     container_name: typeorm_test_db
     environment:
-      MYSQL_ROOT_PASSWORD: fakePasswordForTestPurpose
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
       MYSQL_DATABASE: test_database

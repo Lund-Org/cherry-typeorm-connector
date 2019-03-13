@@ -69,9 +69,9 @@ describe('CherryTypeormConnector class', () => {
     expect(() => connector.checkOptions({
       'type': 'mysql',
       'host': 'localhost',
-      'port': '4000',
+      'port': '3306',
       'username': 'root',
-      'password': 'fakePasswordForTestPurpose',
+      'password': '',
       'database': 'test_database',
       'synchronize': false
     })).to.not.throw()

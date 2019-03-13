@@ -4,9 +4,9 @@ node_js:
   - "10"
   - "8"
 services:
-  - docker
+  - mysql
 before_install:
-  - docker-compose -f etc/docker-compose.yml up -d
+  - mysql -e 'CREATE DATABASE test_database;'
 branches:
   only:
     - master
