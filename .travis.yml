@@ -3,6 +3,10 @@ node_js:
   - "11"
   - "10"
   - "8"
+services:
+  - docker
+before_install:
+  - docker-compose.exe -f etc/docker-compose.yml up -d
 branches:
   only:
     - master
