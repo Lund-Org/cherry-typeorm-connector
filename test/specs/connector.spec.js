@@ -4,6 +4,7 @@ const CherryTypeormConnector = require('../../src/connector')
 
 describe('CherryTypeormConnector class', () => {
   const connector = new CherryTypeormConnector()
+  const connector2 = new CherryTypeormConnector()
 
   it('Test the identifier constant', () => {
     expect(CherryTypeormConnector.getIdentifier()).to.be.equal('DatabaseEngine')
@@ -11,70 +12,83 @@ describe('CherryTypeormConnector class', () => {
 
   it('Test the checkOptions method', () => {
     expect(() => connector.checkOptions({
-      'host': 'test',
-      'port': 'test',
-      'username': 'test',
-      'password': 'test',
-      'database': 'test',
-      'synchronize': 'test'
+      host: 'test',
+      port: 'test',
+      username: 'test',
+      password: 'test',
+      database: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'port': 'test',
-      'username': 'test',
-      'password': 'test',
-      'database': 'test',
-      'synchronize': 'test'
+      type: 'test',
+      port: 'test',
+      username: 'test',
+      password: 'test',
+      database: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'host': 'test',
-      'username': 'test',
-      'password': 'test',
-      'database': 'test',
-      'synchronize': 'test'
+      type: 'test',
+      host: 'test',
+      username: 'test',
+      password: 'test',
+      database: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'host': 'test',
-      'port': 'test',
-      'password': 'test',
-      'database': 'test',
-      'synchronize': 'test'
+      type: 'test',
+      host: 'test',
+      port: 'test',
+      password: 'test',
+      database: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'host': 'test',
-      'port': 'test',
-      'username': 'test',
-      'database': 'test',
-      'synchronize': 'test'
+      type: 'test',
+      host: 'test',
+      port: 'test',
+      username: 'test',
+      database: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'host': 'test',
-      'port': 'test',
-      'username': 'test',
-      'password': 'test',
-      'synchronize': 'test'
+      type: 'test',
+      host: 'test',
+      port: 'test',
+      username: 'test',
+      password: 'test',
+      synchronize: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'test',
-      'host': 'test',
-      'port': 'test',
-      'username': 'test',
-      'password': 'test',
-      'database': 'test'
+      type: 'test',
+      host: 'test',
+      port: 'test',
+      username: 'test',
+      password: 'test',
+      database: 'test'
     })).to.throw()
     expect(() => connector.checkOptions({
-      'type': 'mysql',
-      'host': 'localhost',
-      'port': '3306',
-      'username': 'root',
-      'password': '',
-      'database': 'test_database',
-      'synchronize': false
+      type: 'mysql',
+      host: 'localhost',
+      port: '3306',
+      username: 'root',
+      password: '',
+      database: 'test_database',
+      synchronize: false
     })).to.not.throw()
+
+    connector2.checkOptions({
+      type: 'mysql',
+      host: 'localhost',
+      port: '3306',
+      username: 'root',
+      password: '',
+      database: 'test_database',
+      synchronize: false,
+      postConnectionProcess: () => {
+        return 2
+      }
+    })
   })
 
   it('Test the connectDatabase method', async () => {
@@ -87,8 +101,10 @@ describe('CherryTypeormConnector class', () => {
 
   it('Test the postConnectionProcess method', async () => {
     let defaultResult = await connector.postConnectionProcess()
+    let defaultResult2 = await connector2.postConnectionProcess()
 
     expect(defaultResult).to.be.equal(1)
+    expect(defaultResult2).to.be.equal(2)
   })
 
   it('Test the getConnection method', () => {
