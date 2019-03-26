@@ -17,7 +17,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "mocha --compilers js:@babel/register --require ignore-styles -r jsdom-global/register",
-    "coverage": "nyc --reporter=text npm run test"
+    "coverage": "nyc npm run test"
   },
   "engines": {
     "node": ">= 8.0.0"

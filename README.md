@@ -1,6 +1,6 @@
 # Cherry Typeorm Connector
 
-[![Build Status](https://travis-ci.com/Lund-Org/cherry-typeorm-connector.svg?branch=master)](https://travis-ci.com/Lund-Org/cherry-typeorm-connector)
+[![Build Status](https://travis-ci.com/Lund-Org/cherry-typeorm-connector.svg?branch=master)](https://travis-ci.com/Lund-Org/cherry-typeorm-connector) [![Maintainability](https://api.codeclimate.com/v1/badges/4e54dd4cbf0bb911d0e2/maintainability)](https://codeclimate.com/github/Lund-Org/cherry-typeorm-connector/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/4e54dd4cbf0bb911d0e2/test_coverage)](https://codeclimate.com/github/Lund-Org/cherry-typeorm-connector/test_coverage)
 
 A plugin to use [Typeorm](https://github.com/typeorm/typeorm) as the orm in cherry 🍒
 
