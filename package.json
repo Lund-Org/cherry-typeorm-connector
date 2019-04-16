@@ -1,6 +1,6 @@
 {
   "name": "@lund-org/cherry-typeorm-connector",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A plugin to use typeorm as the ORM of the framework",
   "main": "./src/connector.js",
   "author": "Lund-Org",
