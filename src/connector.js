@@ -34,8 +34,10 @@ class CherryTypeormConnector {
    * @param {object} options The options to connect to the database
    */
   checkOptions (options) {
-    if (Array.isArray(this.options)) {
-      options.forEach(this.checkOptions)
+    if (Array.isArray(options)) {
+      options.forEach((option) => {
+        this.checkOptions(option)
+      })
     } else {
       [
         'type',
@@ -71,7 +73,15 @@ class CherryTypeormConnector {
    * @return {Promise}
    */
   async postConnectionProcess () {
-    if (this.options.postConnectionProcess) {
+    if (Array.isArray(this.options)) {
+      return this.options.map((option, index) => {
+        if (typeof option.postConnectionProcess !== 'undefined' && option.postConnectionProcess) {
+          return option.postConnectionProcess(this.connection[index], option)
+        } else {
+          return null
+        }
+      })
+    } else if (this.options.postConnectionProcess) {
       return this.options.postConnectionProcess(this.connection, this.options)
     }
 
@@ -91,7 +101,15 @@ class CherryTypeormConnector {
    * @return {Promise}
    */
   async closeConnection () {
-    return this.connection.close()
+    if (Array.isArray(this.connection)) {
+      return Promise.all(
+        this.connection.map((co) => {
+          return co.close()
+        })
+      )
+    } else {
+      return this.connection.close()
+    }
   }
 }
 
