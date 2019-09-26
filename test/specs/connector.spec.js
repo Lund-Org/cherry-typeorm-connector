@@ -147,9 +147,9 @@ describe('CherryTypeormConnector class', () => {
   })
 
   it('Test the postConnectionProcess method', async () => {
-    let defaultResult = await connector.postConnectionProcess()
-    let defaultResult2 = await connector2.postConnectionProcess()
-    let defaultResult3 = await connector3.postConnectionProcess()
+    const defaultResult = await connector.postConnectionProcess()
+    const defaultResult2 = await connector2.postConnectionProcess()
+    const defaultResult3 = await connector3.postConnectionProcess()
 
     expect(defaultResult).to.be.equal(1)
     expect(JSON.stringify(defaultResult2)).to.be.equal(JSON.stringify([2, null]))

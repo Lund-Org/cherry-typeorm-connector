@@ -104,11 +104,11 @@ class CherryTypeormConnector {
     if (Array.isArray(this.connection)) {
       return Promise.all(
         this.connection.map((co) => {
-          return co.close()
+          return co ? co.close() : Promise.resolve(true)
         })
       )
     } else {
-      return this.connection.close()
+      return this.connection ? this.connection.close() : Promise.resolve(true)
     }
   }
 }
